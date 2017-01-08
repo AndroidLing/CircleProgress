@@ -5,7 +5,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 
-import doctor.com.CircleProgress;
+import com.doctor.CircleProgress;
+
 
 public class MainActivity extends Activity implements View.OnClickListener {
 
@@ -31,6 +32,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.btn_show).setOnClickListener(this);
         findViewById(R.id.btn_hide).setOnClickListener(this);
         findViewById(R.id.btn_setColors).setOnClickListener(this);
+        findViewById(R.id.btn_setWidth).setOnClickListener(this);
     }
 
     @Override
@@ -43,9 +45,14 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 mCircleProgress3.hide();
                 break;
             case R.id.btn_setColors:
-                mCircleProgress1.setColorSchemeColors(mColors);
-                mCircleProgress2.setColorSchemeColors(mColors);
-                mCircleProgress3.setColorSchemeColors(mColors);
+                mCircleProgress1.setSchemeColors(mColors);
+                mCircleProgress2.setSchemeColors(mColors);
+                mCircleProgress3.setSchemeColors(mColors);
+                break;
+            case R.id.btn_setWidth:
+                mCircleProgress1.setCircleWidth(5.0f);
+                mCircleProgress2.setCircleWidth(5.0f);
+                mCircleProgress3.setCircleWidth(5.0f);
                 break;
         }
     }

@@ -1,4 +1,4 @@
-package doctor.com;
+package com.doctor;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -14,17 +14,19 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
+import doctor.com.R;
+
 /**
  * desc:
  * created by hjl on 2017/1/3 8:04
  */
 
-public class CircleProgress extends View {
+public class CircleProgress extends View implements CircleProgressAttrs {
 
     private final static String TAG = CircleProgress.class.getSimpleName();
 
     private int[] mColorSchemeColors = new int[1];
-    private float mRingWidth;
+    private float mCircleWidth;
 
     private Paint mPaint;
     private RectF mRectF;
@@ -59,15 +61,15 @@ public class CircleProgress extends View {
         super(context, attrs, defStyleAttr);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleProgress, defStyleAttr, 0);
         Resources resources = getResources();
-        mRingWidth = typedArray.getDimension(R.styleable.CircleProgress_CircleWidth, resources.getDimension(R.dimen.CircleWidth));
-        mColorSchemeColors[0] = typedArray.getColor(R.styleable.CircleProgress_CircleColor, resources.getColor(R.color.circle));
+        mCircleWidth = typedArray.getDimension(R.styleable.CircleProgress_circleWidth, resources.getDimension(R.dimen.CircleWidth));
+        mColorSchemeColors[0] = typedArray.getColor(R.styleable.CircleProgress_circleColor, resources.getColor(R.color.circle));
         typedArray.recycle();
         init();
     }
 
     private void init() {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setStrokeWidth(mRingWidth);
+        mPaint.setStrokeWidth(mCircleWidth);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(mColorSchemeColors[mColorsIndex]);
     }
@@ -75,20 +77,26 @@ public class CircleProgress extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        createRectF();
+    }
+
+    private void createRectF() {
         /**
-         * 计算矩形的大小与位置, 使矩形的长宽总是相等
+         * Calculate the size and position of the rectangle,
+         * so that the length and width of the rectangle is always equal
          */
         float size = Math.min(getWidth() - getPaddingLeft() - getPaddingRight(), getHeight() - getPaddingTop() - getPaddingBottom());
-        float left = 0f + mRingWidth + getPaddingLeft();
-        float top = 0f + mRingWidth + getPaddingTop();
-        float right = size - mRingWidth + getPaddingLeft();
-        float bottom = size - mRingWidth + getPaddingTop();
+        float left = 0f + mCircleWidth + getPaddingLeft();
+        float top = 0f + mCircleWidth + getPaddingTop();
+        float right = size - mCircleWidth + getPaddingLeft();
+        float bottom = size - mCircleWidth + getPaddingTop();
 
         /**
-         * 生成矩形
+         * Generate rectangle
          */
         mRectF = new RectF(left, top, right, bottom);
     }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -114,9 +122,27 @@ public class CircleProgress extends View {
         mColorsIndex = 0;
     }
 
-    public void setColorSchemeColors(int... colors) {
+    @Override
+    public void setCircleWidth(float width) {
+        this.mCircleWidth = width;
+        mPaint.setStrokeWidth(width);
+        createRectF();
+    }
+
+    @Override
+    public float getCircleWidth() {
+        return mCircleWidth;
+    }
+
+    @Override
+    public void setSchemeColors(int... colors) {
         this.mColorSchemeColors = colors;
-        mColorsIndex = 0;
+        mColorsIndex = -1;
+    }
+
+    @Override
+    public int[] getSchemeColors() {
+        return mColorSchemeColors;
     }
 
     public void show() {

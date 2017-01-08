@@ -18,27 +18,27 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <doctor.com.CircleProgress
+        <com.doctor.CircleProgress
             android:id="@+id/circleProgress1"
             android:layout_width="40dp"
             android:layout_height="40dp" />
 
-        <doctor.com.CircleProgress
+        <com.doctor.CircleProgress
             android:id="@+id/circleProgress2"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="26dp"
-            app:CircleColor="@android:color/black"
-            app:CircleWidth="3dp" />
+            app:circleColor="@android:color/black"
+            app:circleWidth="3dp" />
 
-        <doctor.com.CircleProgress
+        <com.doctor.CircleProgress
             android:id="@+id/circleProgress3"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginLeft="26dp"
             android:padding="3dp"
-            app:CircleColor="#1C86EE"
-            app:CircleWidth="2.5dp" />
+            app:circleColor="#1C86EE"
+            app:circleWidth="2.5dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,8 +62,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="setColors"/>
-
-
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_setWidth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="setWidth"/>
 
 </LinearLayout>
