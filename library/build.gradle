@@ -2,10 +2,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'com.novoda.bintray-release'
 
 publish {
-    userOrg = 'doctor'
+    userOrg = 'icestoath'
     groupId = 'com.doctor'
     artifactId = 'CircleProgress'
-    publishVersion = '1.0.3'
+    publishVersion = '1.0.0'
     desc = 'CircleProgress'
     website = 'https://github.com/AndroidLing/CircleProgress'
 }
@@ -14,13 +14,13 @@ tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
 android {
-    compileSdkVersion 25
+    compileSdkVersion 24
     buildToolsVersion "24.0.2"
 
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 25
+        targetSdkVersion 24
         versionCode 1
         versionName version
 

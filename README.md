@@ -39,4 +39,4 @@
         app:circleColor="@android:color/black"
         app:circleWidth="3dp" />
 #JCenter
-	compile 'com.doctor:CircleProgress:1.0.3'
+	compile 'com.doctor:CircleProgress:1.0.0'
